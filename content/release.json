@@ -1,0 +1,9 @@
+{
+  "title": "Release title",
+  "type": "Single",
+  "date": "2026-10-01",
+  "blurb": "One or two sentences.",
+  "cover": "/media/release-cover.jpg",
+  "spotifyEmbedUrl": "https://open.spotify.com/embed/track/...",
+  "youtubeId": ""
+}
