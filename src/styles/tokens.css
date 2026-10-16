@@ -1,1 +1,13 @@
-/* Placeholder. Tokens live here. */
+:root {
+  --bg: #14120f;
+  --bg-raised: #1c1915;
+  --paper: #f4efe6;
+  --ink: #16140f;
+  --muted: #a39b90;
+  --line: rgba(244, 239, 230, 0.16);
+  --accent: #b6402c;
+  --accent-2: #d7a15e;
+
+  --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", serif;
+  --font-text: "Geist", "Inter", sans-serif;
+}

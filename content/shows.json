@@ -1,8 +1,83 @@
 [
   {
-    "date": "2026-11-14",
+    "date": "2026-08-22",
     "city": "Tilburg",
-    "venue": "Venue name",
+    "venue": "Wilhelmina Viert de Zomer, Wilhelminapark",
+    "country": "NL",
+    "ticketUrl": "",
+    "soldOut": false,
+    "note": "Band"
+  },
+  {
+    "date": "2026-08-29",
+    "city": "Tilburg",
+    "venue": "Festival Oude Dijk",
+    "country": "NL",
+    "ticketUrl": "",
+    "soldOut": false,
+    "note": "Solo"
+  },
+  {
+    "date": "2026-09-12",
+    "city": "Nijmegen",
+    "venue": "Popronde, Stevenskerk",
+    "country": "NL",
+    "ticketUrl": "",
+    "soldOut": false,
+    "note": "Ensemble"
+  },
+  {
+    "date": "2026-09-18",
+    "city": "Apeldoorn",
+    "venue": "Popronde, Het Raadhuis",
+    "country": "NL",
+    "ticketUrl": "",
+    "soldOut": false
+  },
+  {
+    "date": "2026-09-19",
+    "city": "Deventer",
+    "venue": "Popronde, MIMIK Theatre",
+    "country": "NL",
+    "ticketUrl": "",
+    "soldOut": false
+  },
+  {
+    "date": "2026-09-20",
+    "city": "Tilburg",
+    "venue": "Popup Festival, 013",
+    "country": "NL",
+    "ticketUrl": "",
+    "soldOut": false
+  },
+  {
+    "date": "2026-09-20",
+    "city": "Udenhout",
+    "venue": "Sing & Songwriters Event",
+    "country": "NL",
+    "ticketUrl": "",
+    "soldOut": false
+  },
+  {
+    "date": "2026-10-09",
+    "city": "Leeuwarden",
+    "venue": "Popronde, Bodega y Tapas",
+    "country": "NL",
+    "ticketUrl": "",
+    "soldOut": false
+  },
+  {
+    "date": "2026-10-22",
+    "city": "Utrecht",
+    "venue": "Popronde, Vogelfrei",
+    "country": "NL",
+    "ticketUrl": "",
+    "soldOut": false
+  },
+  {
+    "date": "2026-10-30",
+    "city": "Uden",
+    "venue": "Popronde, Kruisherenkapel",
     "country": "NL",
     "ticketUrl": "",
     "soldOut": false
