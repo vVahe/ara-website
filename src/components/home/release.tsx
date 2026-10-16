@@ -10,17 +10,11 @@ export function Release() {
 
   return (
     <section id="release" className={styles.section}>
-      <p className={styles.label}>{release.type}</p>
-      <div className={styles.layout}>
-        <Image
-          src={release.cover}
-          alt={`${release.title} cover`}
-          width={1600}
-          height={1600}
-        />
-        <div>
-          <h1 className={styles.title}>{release.title}</h1>
-          {blurb ? <p className={styles.blurb}>{blurb}</p> : null}
+      <div className={styles.inner}>
+        <p className={styles.label}>{release.type}</p>
+        <h1 className={styles.title}>{release.title}</h1>
+        {blurb ? <p className={styles.blurb}>{blurb}</p> : null}
+        <div className={styles.pair}>
           {release.spotifyEmbedUrl ? (
             <div className={styles.player}>
               <iframe
@@ -32,10 +26,19 @@ export function Release() {
               />
             </div>
           ) : null}
-          <a className={styles.buy} href="/shop">
-            Buy CD
-          </a>
+          <div className={styles.coverFrame}>
+            <Image
+              className={styles.cover}
+              src={release.cover}
+              alt={`${release.title} cover`}
+              width={1600}
+              height={1600}
+            />
+          </div>
         </div>
+        <a className={styles.buy} href="/shop">
+          Buy CD
+        </a>
       </div>
     </section>
   );

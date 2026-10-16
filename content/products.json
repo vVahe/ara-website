@@ -1,26 +1,14 @@
 [
   {
-    "id": "cd-debut",
-    "title": "Debut CD",
+    "id": "cd-ep",
+    "title": "Where the Lilies Bloom in Ruins",
     "kind": "cd",
     "priceCents": 1200,
     "currency": "EUR",
-    "image": "/media/cd.jpg",
-    "description": "One sentence.",
+    "image": "/media/release-cover.webp",
+    "description": "",
     "sizes": [],
     "stock": 40,
     "shippingClass": "letterbox"
-  },
-  {
-    "id": "shirt-tour",
-    "title": "Tour shirt",
-    "kind": "shirt",
-    "priceCents": 3000,
-    "currency": "EUR",
-    "image": "/media/shirt.jpg",
-    "description": "One sentence.",
-    "sizes": ["S", "M", "L", "XL"],
-    "stock": 20,
-    "shippingClass": "parcel"
   }
 ]

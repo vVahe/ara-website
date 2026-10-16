@@ -1,9 +1,12 @@
 :root {
   --bg: #14120f;
   --bg-raised: #1c1915;
+  --bg-band: #242019;
+  --bg-deep: #0e0c0a;
   --paper: #f4efe6;
   --ink: #16140f;
   --muted: #a39b90;
+  --faded: #8a8378;
   --line: rgba(244, 239, 230, 0.16);
   --accent: #b6402c;
   --accent-2: #d7a15e;

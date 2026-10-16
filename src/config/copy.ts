@@ -1,1 +1,31 @@
-// Placeholder.
+export const copy = {
+  shopTitle: "Shop",
+  vatNote: "Prices include BTW where applicable.",
+  fewLeft: "Few left",
+  size: "Size",
+  quantity: "Quantity",
+  name: "Full name",
+  email: "Email",
+  street: "Street and number",
+  postalCode: "Postal code",
+  city: "City",
+  country: "Country",
+  shipping: "Shipping",
+  total: "Total",
+  pay: "Pay",
+  paying: "Opening checkout…",
+  checkoutError: "Checkout could not start. Try again.",
+  countries: [
+    { value: "NL", label: "Netherlands" },
+    { value: "BE", label: "Belgium" },
+    { value: "AM", label: "Armenia" },
+    { value: "Other", label: "Other" },
+  ],
+  withdrawal:
+    "Physical goods. Inside the EU you can withdraw within 14 days. You pay return postage unless the item is wrong or damaged.",
+  thankYou:
+    "Payment received if your bank confirmed it. A mail follows when the parcel is handed to PostNL.",
+  reference: "Reference",
+  cancelledLead: "The payment was not completed.",
+  backToShop: "Back to the shop",
+};

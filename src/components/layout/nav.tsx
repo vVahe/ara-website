@@ -1,17 +1,15 @@
 import Link from "next/link";
 import { site } from "@/config/site";
-import { InstagramIcon } from "./instagram-icon";
+import { SocialIcon } from "./social-icon";
 import styles from "./nav.module.css";
 
 const links = [
   { href: "/#release", label: "EP" },
-  { href: "/#shows", label: "Tour dates" },
+  { href: "/#shows", label: "Show dates" },
   { href: "/#list", label: "Newsletter" },
 ];
 
 export function Nav() {
-  const instagram = site.socials[0];
-
   return (
     <header className={styles.nav}>
       <Link className={styles.name} href="/">
@@ -23,17 +21,20 @@ export function Nav() {
             {link.label}
           </a>
         ))}
-        {instagram ? (
-          <a
-            className={styles.social}
-            href={instagram.href}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <InstagramIcon />
-            <span className="visually-hidden">{instagram.label}</span>
-          </a>
-        ) : null}
+        <span className={styles.socials}>
+          {site.socials.map((social) => (
+            <a
+              key={social.label}
+              className={styles.social}
+              href={social.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <SocialIcon name={social.label} />
+              <span className="visually-hidden">{social.label}</span>
+            </a>
+          ))}
+        </span>
       </nav>
     </header>
   );

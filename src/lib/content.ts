@@ -1,6 +1,8 @@
+import productsJson from "../../content/products.json";
 import releaseJson from "../../content/release.json";
 import showsJson from "../../content/shows.json";
 import videosJson from "../../content/videos.json";
+import type { ShippingClass } from "@/config/shipping";
 
 export type Release = {
   title: string;
@@ -27,6 +29,19 @@ export type Video = {
   youtubeId: string;
 };
 
+export type Product = {
+  id: string;
+  title: string;
+  kind: string;
+  priceCents: number;
+  currency: "EUR";
+  image: string;
+  description: string;
+  sizes: string[];
+  stock: number;
+  shippingClass: ShippingClass;
+};
+
 export const release = releaseJson as Release;
 
 export const shows = [...(showsJson as Show[])].sort((a, b) =>
@@ -34,3 +49,5 @@ export const shows = [...(showsJson as Show[])].sort((a, b) =>
 );
 
 export const videos = videosJson as Video[];
+
+export const products = productsJson as Product[];

@@ -39,6 +39,11 @@
   color: var(--accent-2);
 }
 
+.socials {
+  display: inline-flex;
+  align-items: center;
+}
+
 .social {
   position: relative;
   width: 44px;

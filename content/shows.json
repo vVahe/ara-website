@@ -59,9 +59,58 @@
     "soldOut": false
   },
   {
+    "date": "2026-09-25",
+    "city": "Den Bosch",
+    "venue": "Popronde, Willem Twee Poppodium - Grote Zaal",
+    "country": "NL",
+    "ticketUrl": "",
+    "soldOut": false
+  },
+  {
+    "date": "2026-10-01",
+    "city": "Tilburg",
+    "venue": "Popronde, Schouwburg Concertzaal",
+    "country": "NL",
+    "ticketUrl": "",
+    "soldOut": false
+  },
+  {
+    "date": "2026-10-08",
+    "city": "Groningen",
+    "venue": "Popronde, Bij Roel",
+    "country": "NL",
+    "ticketUrl": "",
+    "soldOut": false
+  },
+  {
     "date": "2026-10-09",
     "city": "Leeuwarden",
     "venue": "Popronde, Bodega y Tapas",
+    "country": "NL",
+    "ticketUrl": "",
+    "soldOut": false
+  },
+  {
+    "date": "2026-10-09",
+    "city": "Leeuwarden",
+    "venue": "Popronde, De Oldehove",
+    "country": "NL",
+    "ticketUrl": "",
+    "soldOut": false,
+    "note": "Preview"
+  },
+  {
+    "date": "2026-10-11",
+    "city": "Doetinchem",
+    "venue": "Popronde, De Walmolen",
+    "country": "NL",
+    "ticketUrl": "",
+    "soldOut": false
+  },
+  {
+    "date": "2026-10-15",
+    "city": "Middelburg",
+    "venue": "Popronde, t Zusje",
     "country": "NL",
     "ticketUrl": "",
     "soldOut": false
@@ -75,11 +124,68 @@
     "soldOut": false
   },
   {
+    "date": "2026-10-29",
+    "city": "Wageningen",
+    "venue": "Popronde, Hotel de Wereld",
+    "country": "NL",
+    "ticketUrl": "",
+    "soldOut": false
+  },
+  {
     "date": "2026-10-30",
     "city": "Uden",
     "venue": "Popronde, Kruisherenkapel",
     "country": "NL",
     "ticketUrl": "",
     "soldOut": false
+  },
+  {
+    "date": "2026-11-07",
+    "city": "Rotterdam",
+    "venue": "Popronde, Plato",
+    "country": "NL",
+    "ticketUrl": "",
+    "soldOut": false
+  },
+  {
+    "date": "2026-11-08",
+    "city": "Woerden",
+    "venue": "Popronde, Partyschip Sweet Caroline",
+    "country": "NL",
+    "ticketUrl": "",
+    "soldOut": false
+  },
+  {
+    "date": "2026-11-13",
+    "city": "Alkmaar",
+    "venue": "Popronde, Café Klunder",
+    "country": "NL",
+    "ticketUrl": "",
+    "soldOut": false
+  },
+  {
+    "date": "2026-11-19",
+    "city": "Zwolle",
+    "venue": "Popronde, Zwolse Theaters",
+    "country": "NL",
+    "ticketUrl": "",
+    "soldOut": false
+  },
+  {
+    "date": "2026-11-20",
+    "city": "Emmen",
+    "venue": "Popronde, Musifoon",
+    "country": "NL",
+    "ticketUrl": "",
+    "soldOut": false
+  },
+  {
+    "date": "2026-11-20",
+    "city": "Emmen",
+    "venue": "Popronde, ZO34!",
+    "country": "NL",
+    "ticketUrl": "",
+    "soldOut": false,
+    "note": "Sessie"
   }
 ]
