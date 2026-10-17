@@ -14,6 +14,7 @@ export async function appendOrder(order: PaidOrder) {
       "x-sheet-secret": secret,
     },
     body: JSON.stringify({
+      secret,
       orderId: order.orderId,
       paidAt: order.paidAt,
       molliePaymentId: order.paymentId,
@@ -35,6 +36,12 @@ export async function appendOrder(order: PaidOrder) {
     throw new Error(`sheet webhook failed: ${response.status}`);
   }
 
-  const payload = (await response.json().catch(() => null)) as { duplicate?: boolean } | null;
-  return { duplicate: payload?.duplicate === true };
+  const payload = (await response.json().catch(() => null)) as {
+    ok?: boolean;
+    duplicate?: boolean;
+  } | null;
+  if (payload?.ok !== true) {
+    throw new Error(`sheet webhook failed: ${response.status}`);
+  }
+  return { duplicate: payload.duplicate === true };
 }
