@@ -6,6 +6,7 @@
 .inner {
   width: min(1080px, calc(100% - 2.5rem));
   margin: 0 auto;
+  text-align: center;
 }
 
 .label {
@@ -18,6 +19,106 @@
 
 .text {
   max-width: 28rem;
-  margin: 0.9rem 0 0;
+  margin: 0.9rem auto 0;
   color: var(--paper);
+}
+
+.embed {
+  margin-top: 1.4rem;
+}
+
+.form {
+  display: grid;
+  gap: 0.9rem;
+  max-width: 28rem;
+  margin-inline: auto;
+  text-align: left;
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.field label {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.field input {
+  min-height: 44px;
+  padding: 0 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--bg-raised);
+  color: var(--paper);
+  font: inherit;
+}
+
+.field input:focus-visible,
+.join:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+}
+
+.field:global(.ml-error) input {
+  border-color: var(--accent);
+}
+
+.fieldError {
+  display: none;
+  margin: 0;
+  color: var(--accent-2);
+  font-size: 0.85rem;
+}
+
+.field:global(.ml-error) .fieldError {
+  display: block;
+}
+
+.submit {
+  display: flex;
+  justify-content: center;
+}
+
+.join,
+.loading {
+  min-height: 44px;
+  padding: 0 1.15rem;
+  border: 0;
+  background: var(--accent);
+  color: var(--paper);
+  font: inherit;
+  cursor: pointer;
+}
+
+.join:hover {
+  background: #9c3626;
+}
+
+.loading {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  cursor: wait;
+}
+
+.spinner {
+  width: 0.9rem;
+  height: 0.9rem;
+  border: 2px solid var(--paper);
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.success {
+  margin: 0;
+  color: var(--paper);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

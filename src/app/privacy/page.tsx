@@ -14,8 +14,8 @@ export default function PrivacyPage() {
       <h1>Privacy</h1>
       <p>This site has no accounts. It does not use analytics cookies.</p>
       <p>
-        Newsletter signups, once open, are handled by MailerLite with double
-        opt-in. Payments, once open, are handled by Mollie. An order keeps your
+        Newsletter signups are handled by MailerLite with double opt-in.
+        Payments are handled by Mollie. An order keeps your
         name, email, address, and the item until the parcel is delivered.
       </p>
       <p>

@@ -28,4 +28,11 @@ export const copy = {
   reference: "Reference",
   cancelledLead: "The payment was not completed.",
   backToShop: "Back to the shop",
+  newsletterLead: "Shows and songs, nothing else. You can leave any time.",
+  newsletterName: "Name",
+  newsletterEmail: "Email",
+  newsletterEmailError: "Enter a valid email.",
+  newsletterJoin: "Join",
+  newsletterLoading: "Loading…",
+  newsletterThanks: "Check your inbox to confirm.",
 };
