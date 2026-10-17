@@ -15,8 +15,8 @@ export async function POST(request: Request) {
   }
 
   const parsed = parseCheckout(body);
-  if (typeof parsed === "string") {
-    return Response.json({ error: parsed }, { status: 400 });
+  if ("error" in parsed) {
+    return Response.json({ error: parsed.error, fields: parsed.fields }, { status: 400 });
   }
 
   try {

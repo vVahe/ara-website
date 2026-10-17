@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ClearCart } from "@/components/shop/clear-cart";
 import { copy } from "@/config/copy";
 import styles from "../page.module.css";
 
@@ -18,6 +19,7 @@ export default async function ThankYouPage({
 
   return (
     <main className={styles.main}>
+      <ClearCart orderId={reference} />
       <h1>Thank you</h1>
       <p>{copy.thankYou}</p>
       {reference ? (

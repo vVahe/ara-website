@@ -1,69 +1,235 @@
-.catalog {
+.layout {
   display: grid;
-  gap: 2rem;
 }
 
 .list {
   display: grid;
-  gap: 0.75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.75rem 1rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.card,
-.cardSelected {
-  display: flex;
-  gap: 1rem;
-  width: min(100%, 32rem);
-  padding: 0.75rem;
-  border: 1px solid var(--line);
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
+.card {
+  display: grid;
+  align-content: start;
+  gap: 0.55rem;
 }
 
-.cardSelected {
-  border-color: var(--accent-2);
+.thumb,
+.visual {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--bg-raised);
 }
 
-.card:focus-visible,
-.cardSelected:focus-visible {
-  outline: 2px solid var(--accent-2);
-  outline-offset: 2px;
-}
-
-.image {
-  width: 96px;
-  height: 96px;
+.thumb img,
+.visual img {
   object-fit: cover;
-  border-radius: 8px;
 }
 
 .title,
 .price,
 .few,
-.description {
-  display: block;
+.modalTitle,
+.modalPrice,
+.description,
+.modalNote {
+  margin: 0;
 }
 
-.title {
+.title,
+.modalTitle {
   font-family: var(--font-display), serif;
-  font-size: 1.35rem;
   font-weight: 460;
   font-variation-settings: "opsz" 72;
+  letter-spacing: -0.02em;
   line-height: 1.15;
 }
 
+.title {
+  font-size: 1.15rem;
+}
+
 .price,
-.few,
+.modalPrice,
 .description {
-  margin-top: 0.25rem;
   color: var(--muted);
 }
 
-.few {
+.few,
+.modalNote {
   color: var(--accent-2);
+}
+
+.view,
+.add,
+.size select,
+.qty select,
+.close {
+  min-height: 44px;
+  border-radius: 2px;
+  font: inherit;
+}
+
+.view {
+  justify-self: start;
+  min-width: 8.5rem;
+  margin-top: 0.2rem;
+  padding: 0 0.95rem;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--paper);
+  cursor: pointer;
+}
+
+.view:hover {
+  border-color: var(--paper);
+}
+
+.backdrop {
+  position: fixed;
+  z-index: 40;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background: rgba(8, 7, 6, 0.72);
+}
+
+.modal {
+  position: relative;
+  display: grid;
+  width: min(52rem, 100%);
+  max-height: min(40rem, calc(100vh - 2.5rem));
+  overflow: auto;
+  border: 1px solid var(--line);
+  background: var(--bg-raised);
+}
+
+.close {
+  position: absolute;
+  z-index: 1;
+  top: 0.4rem;
+  right: 0.4rem;
+  width: 44px;
+  padding: 0;
+  border: 0;
+  background: var(--bg-raised);
+  color: var(--paper);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: var(--accent-2);
+}
+
+.details {
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+  padding: 1.15rem 1.2rem 1.4rem;
+}
+
+.modalTitle {
+  padding-right: 2.5rem;
+  font-size: clamp(1.6rem, 3vw, 2.15rem);
+}
+
+.modalPrice {
+  font-size: 1.05rem;
+}
+
+.description {
+  line-height: 1.5;
+}
+
+.size,
+.qty {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.size span,
+.qty span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.size select,
+.qty select {
+  padding: 0 0.75rem;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--paper);
+}
+
+.buy {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+.qty select {
+  min-width: 4.75rem;
+}
+
+.add {
+  flex: 1;
+  padding: 0 1rem;
+  border: 0;
+  background: var(--accent);
+  color: var(--paper);
+  cursor: pointer;
+}
+
+.add:hover {
+  background: #9c3626;
+}
+
+.add:disabled,
+.qty select:disabled {
+  background: transparent;
+  color: var(--muted);
+  cursor: default;
+}
+
+.add:disabled {
+  border: 1px solid var(--line);
+}
+
+.view:focus-visible,
+.add:focus-visible,
+.close:focus-visible,
+.size select:focus-visible,
+.qty select:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+}
+
+.note {
+  margin: 0 0 0.75rem;
+  color: var(--accent-2);
+}
+
+@media (min-width: 960px) {
+  .list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2rem 1.15rem;
+  }
+}
+
+@media (min-width: 720px) {
+  .modal {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .details {
+    padding: 3.4rem 1.4rem 1.6rem 1.35rem;
+  }
 }

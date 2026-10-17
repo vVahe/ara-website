@@ -1,0 +1,286 @@
+.reopen {
+  position: fixed;
+  z-index: 25;
+  top: 5.25rem;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  padding: 0 0.8rem 0 0.95rem;
+  border: 1px solid var(--line);
+  border-right: 0;
+  background: var(--bg-raised);
+  color: var(--paper);
+  font: inherit;
+  cursor: pointer;
+}
+
+.reopen:hover {
+  color: var(--accent-2);
+}
+
+.backdrop,
+.backdropOpen {
+  position: fixed;
+  z-index: 30;
+  inset: 0;
+  background: rgba(8, 7, 6, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.backdropOpen {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.panel,
+.panelOpen {
+  position: fixed;
+  z-index: 31;
+  top: 0;
+  right: 0;
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+  width: min(26rem, calc(100vw - 2.5rem));
+  height: 100%;
+  margin: 0;
+  padding: 1rem 1rem 1.5rem;
+  overflow: auto;
+  border-left: 1px solid var(--line);
+  background: var(--bg-raised);
+  transform: translateX(100%);
+  pointer-events: none;
+  transition: transform 280ms ease;
+}
+
+.panelOpen {
+  box-shadow: -16px 0 40px rgba(0, 0, 0, 0.35);
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.header h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin: 0;
+  font-family: var(--font-display), serif;
+  font-weight: 460;
+  font-size: 1.8rem;
+  font-variation-settings: "opsz" 72;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.count {
+  color: var(--accent-2);
+  font-family: var(--font-text), sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0;
+}
+
+.close {
+  min-height: 44px;
+  padding: 0 0.15rem;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
+}
+
+.close:hover,
+.remove:hover {
+  color: var(--paper);
+}
+
+.empty {
+  margin: 0;
+  color: var(--muted);
+}
+
+.lines {
+  display: grid;
+  gap: 0.9rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lines li {
+  display: grid;
+  gap: 0.15rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--line);
+}
+
+.kind,
+.title,
+.meta {
+  margin: 0;
+}
+
+.kind {
+  color: var(--accent-2);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.title {
+  font-family: var(--font-display), serif;
+  font-size: 1.15rem;
+  font-weight: 460;
+  font-variation-settings: "opsz" 48;
+  line-height: 1.2;
+}
+
+.meta {
+  color: var(--muted);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.75rem;
+  margin-top: 0.45rem;
+}
+
+.qty {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.qty span,
+.field > span:first-child,
+.fieldInvalid > span:first-child {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.qty select,
+.field input,
+.field select,
+.fieldInvalid input,
+.fieldInvalid select {
+  min-height: 44px;
+  padding: 0 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--bg);
+  color: var(--paper);
+  font: inherit;
+}
+
+.fieldInvalid input {
+  border-color: var(--accent);
+  background: rgba(182, 64, 44, 0.12);
+}
+
+.remove {
+  min-height: 44px;
+  padding: 0 0.35rem;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
+}
+
+.form {
+  display: grid;
+  gap: 0.9rem;
+  padding-top: 0.25rem;
+}
+
+.field,
+.fieldInvalid {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.fieldInvalid .fieldError {
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+
+.field input:focus-visible,
+.field select:focus-visible,
+.fieldInvalid input:focus-visible,
+.qty select:focus-visible,
+.remove:focus-visible,
+.close:focus-visible,
+.reopen:focus-visible,
+.pay:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+}
+
+.split {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.totals {
+  display: grid;
+  gap: 0.2rem;
+  margin: 0.2rem 0 0;
+}
+
+.pay {
+  justify-self: start;
+  min-height: 44px;
+  padding: 0 1.15rem;
+  border: 0;
+  background: var(--accent);
+  color: var(--paper);
+  font: inherit;
+  cursor: pointer;
+}
+
+.pay:hover {
+  background: #9c3626;
+}
+
+.pay:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.error {
+  margin: 0;
+  color: var(--accent-2);
+}
+
+@media (max-width: 720px) {
+  .reopen {
+    top: 11rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .split {
+    grid-template-columns: 8.5rem 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .panelOpen,
+  .backdrop,
+  .backdropOpen {
+    transition: none;
+  }
+}

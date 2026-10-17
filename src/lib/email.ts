@@ -1,4 +1,5 @@
 import { formatEuros } from "@/lib/money";
+import { lineLabel } from "@/lib/lines";
 import type { PaidOrder } from "@/lib/mollie";
 
 export async function sendMerchantEmail(order: PaidOrder) {
@@ -9,12 +10,13 @@ export async function sendMerchantEmail(order: PaidOrder) {
     throw new Error("merchant email is not configured");
   }
 
-  const size = order.size ? order.size : "—";
+  const items = order.lines.map(
+    (line) => `${lineLabel(line)} × ${line.quantity} — ${formatEuros(line.unitCents * line.quantity)}`,
+  );
   const text = [
     `Order ${order.orderId}`,
-    `Item: ${order.title}`,
-    `Size: ${size}`,
-    `Quantity: ${order.quantity}`,
+    ...items,
+    `Shipping: ${formatEuros(order.shippingCents)} (${order.shippingClass})`,
     `Total: ${formatEuros(order.totalCents)}`,
     `Mollie: ${order.paymentId}`,
     "",

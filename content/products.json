@@ -10,5 +10,17 @@
     "sizes": [],
     "stock": 40,
     "shippingClass": "letterbox"
+  },
+  {
+    "id": "vinyl-ep",
+    "title": "Where the Lilies Bloom in Ruins",
+    "kind": "vinyl",
+    "priceCents": 2500,
+    "currency": "EUR",
+    "image": "/media/release-cover.webp",
+    "description": "",
+    "sizes": [],
+    "stock": 20,
+    "shippingClass": "letterbox"
   }
 ]
