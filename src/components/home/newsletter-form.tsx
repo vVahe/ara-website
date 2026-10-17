@@ -1,94 +1,101 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import Script from "next/script";
+import { useState, type FormEvent } from "react";
 import { copy } from "@/config/copy";
 import styles from "./list-signup.module.css";
 
-const SUCCESS = "ml_webform_success_47263736";
+const ACTION =
+  "https://assets.mailerlite.com/jsonp/2720408/forms/201589724682389236/subscribe";
+
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function NewsletterForm() {
-  const formRow = useRef<HTMLDivElement>(null);
-  const successRow = useRef<HTMLParagraphElement>(null);
+  const [emailError, setEmailError] = useState(false);
+  const [formError, setFormError] = useState(false);
+  const [pending, setPending] = useState(false);
+  const [done, setDone] = useState(false);
 
-  useEffect(() => {
-    const showSuccess = () => {
-      if (formRow.current) formRow.current.style.display = "none";
-      if (successRow.current) successRow.current.hidden = false;
-    };
-    const holder = window as unknown as Record<string, unknown>;
-    holder[SUCCESS] = showSuccess;
-    return () => {
-      if (holder[SUCCESS] === showSuccess) delete holder[SUCCESS];
-    };
-  }, []);
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const name = String(data.get("fields[name]") ?? "").trim();
+    const email = String(data.get("fields[email]") ?? "").trim();
+    if (!EMAIL.test(email)) {
+      setEmailError(true);
+      setFormError(false);
+      return;
+    }
+
+    setEmailError(false);
+    setFormError(false);
+    setPending(true);
+    try {
+      const body = new URLSearchParams();
+      body.set("fields[name]", name);
+      body.set("fields[email]", email);
+      body.set("ml-submit", "1");
+      body.set("anticsrf", "true");
+      body.set("ajax", "1");
+      const response = await fetch(ACTION, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body,
+      });
+      const payload = (await response.json()) as {
+        success?: boolean;
+        errors?: { fields?: { email?: string[] } };
+      };
+      if (payload.success) {
+        setDone(true);
+        return;
+      }
+      if (payload.errors?.fields?.email?.length) {
+        setEmailError(true);
+        return;
+      }
+      setFormError(true);
+    } catch {
+      setFormError(true);
+    } finally {
+      setPending(false);
+    }
+  }
+
+  if (done) {
+    return <p className={styles.success}>{copy.newsletterThanks}</p>;
+  }
 
   return (
-    <>
-      <div
-        id="mlb2-47263736"
-        className={`ml-subscribe-form ml-subscribe-form-47263736 ${styles.embed}`}
-      >
-        <div ref={formRow} className="row-form">
-          <form
-            className={`ml-block-form ${styles.form}`}
-            action="https://assets.mailerlite.com/jsonp/2720408/forms/201589724682389236/subscribe"
-            method="post"
-            target="_blank"
-          >
-            <div className={`${styles.field} ml-field-group ml-field-name`}>
-              <label htmlFor="newsletter-name">{copy.newsletterName}</label>
-              <input
-                id="newsletter-name"
-                aria-label="name"
-                type="text"
-                name="fields[name]"
-                autoComplete="given-name"
-              />
-            </div>
-            <div
-              className={`${styles.field} ml-field-group ml-field-email ml-validate-email ml-validate-required`}
-            >
-              <label htmlFor="newsletter-email">{copy.newsletterEmail}</label>
-              <input
-                id="newsletter-email"
-                aria-label="email"
-                aria-required="true"
-                aria-describedby="newsletter-email-error"
-                type="email"
-                name="fields[email]"
-                autoComplete="email"
-              />
-              <p id="newsletter-email-error" className={styles.fieldError} role="alert">
-                {copy.newsletterEmailError}
-              </p>
-            </div>
-            <input type="hidden" name="ml-submit" value="1" />
-            <input type="hidden" name="anticsrf" value="true" />
-            <div className={styles.submit}>
-              <button type="submit" className={`primary ${styles.join}`}>
-                {copy.newsletterJoin}
-              </button>
-              <button
-                disabled
-                type="button"
-                className={`loading ${styles.loading}`}
-                style={{ display: "none" }}
-              >
-                <span className={styles.spinner} aria-hidden="true" />
-                <span className="visually-hidden">{copy.newsletterLoading}</span>
-              </button>
-            </div>
-          </form>
-        </div>
-        <p ref={successRow} className={`row-success ${styles.success}`} hidden>
-          {copy.newsletterThanks}
+    <form className={styles.form} onSubmit={onSubmit} noValidate>
+      <div className={styles.field}>
+        <label htmlFor="newsletter-name">{copy.newsletterName}</label>
+        <input id="newsletter-name" type="text" name="fields[name]" autoComplete="given-name" />
+      </div>
+      <div className={`${styles.field} ${emailError ? styles.invalid : ""}`}>
+        <label htmlFor="newsletter-email">{copy.newsletterEmail}</label>
+        <input
+          id="newsletter-email"
+          aria-required="true"
+          aria-invalid={emailError}
+          aria-describedby="newsletter-email-error"
+          type="email"
+          name="fields[email]"
+          autoComplete="email"
+        />
+        <p id="newsletter-email-error" className={styles.fieldError} role="alert">
+          {copy.newsletterEmailError}
         </p>
       </div>
-      <Script
-        src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519"
-        strategy="afterInteractive"
-      />
-    </>
+      <div className={styles.submit}>
+        <button type="submit" className={styles.join} disabled={pending}>
+          {pending ? copy.newsletterLoading : copy.newsletterJoin}
+        </button>
+      </div>
+      {formError ? (
+        <p className={styles.formError} role="alert">
+          {copy.newsletterError}
+        </p>
+      ) : null}
+    </form>
   );
 }

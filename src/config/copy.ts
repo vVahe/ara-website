@@ -35,4 +35,5 @@ export const copy = {
   newsletterJoin: "Join",
   newsletterLoading: "Loading…",
   newsletterThanks: "Check your inbox to confirm.",
+  newsletterError: "Signup could not start. Try again.",
 };
