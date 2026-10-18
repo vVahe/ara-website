@@ -4,6 +4,7 @@
   --bg-band: #242019;
   --bg-deep: #0e0c0a;
   --paper: #f4efe6;
+  --sand: #e4c48c;
   --ink: #16140f;
   --muted: #a39b90;
   --faded: #8a8378;
@@ -13,4 +14,5 @@
 
   --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", serif;
   --font-text: "Geist", "Inter", sans-serif;
+  --nav-height: 4.5rem;
 }

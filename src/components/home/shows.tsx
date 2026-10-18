@@ -44,7 +44,7 @@ export function Shows({ today }: { today: string }) {
           })}
         </ol>
         {clips.length > 0 ? (
-          <div className={styles.footage}>
+          <div id="watch" className={styles.footage}>
             {clips.map((video) => (
               <div key={video.youtubeId} className={styles.video}>
                 <iframe

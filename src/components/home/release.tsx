@@ -12,7 +12,7 @@ export function Release() {
     <section id="release" className={styles.section}>
       <div className={styles.inner}>
         <p className={styles.label}>{release.type}</p>
-        <h1 className={styles.title}>{release.title}</h1>
+        <h2 className={styles.title}>{release.title}</h2>
         {blurb ? <p className={styles.blurb}>{blurb}</p> : null}
         <div className={styles.pair}>
           {release.spotifyEmbedUrl ? (

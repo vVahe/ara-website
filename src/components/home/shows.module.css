@@ -68,6 +68,7 @@
   margin-top: 2.5rem;
   display: grid;
   gap: 1.5rem;
+  scroll-margin-top: calc(var(--nav-height) + 1.5rem);
 }
 
 .video {
