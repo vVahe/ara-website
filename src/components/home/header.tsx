@@ -31,8 +31,6 @@ export function Header() {
           <Link className={styles.button} href="/shop">
             Order Now
           </Link>
-          {/* Destination is added later. */}
-          <a className={styles.button}>Listen Now</a>
         </div>
       </div>
     </section>

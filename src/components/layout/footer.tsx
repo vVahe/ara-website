@@ -27,7 +27,6 @@ export function Footer({ year }: { year: string }) {
             ))}
           </span>
           <Link href="/privacy">Privacy</Link>
-          <a href={`mailto:${site.email}`}>{site.email}</a>
         </nav>
       </div>
     </footer>

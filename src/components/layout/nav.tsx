@@ -9,7 +9,7 @@ import styles from "./nav.module.css";
 const links = [
   { href: "/#home", label: "Home" },
   { href: "/shop", label: "Shop" },
-  { href: "/#watch", label: "Watch" },
+  { href: "/#watch", label: "Listen now" },
   { href: "/#shows", label: "Live Shows" },
   { href: "/#list", label: "Newsletter" },
 ];

@@ -1,6 +1,8 @@
 export function SocialIcon({ name }: { name: string }) {
   if (name === "Spotify") return <SpotifyIcon />;
+  if (name === "Apple Music") return <AppleMusicIcon />;
   if (name === "YouTube") return <YouTubeIcon />;
+  if (name === "YouTube Music") return <YouTubeMusicIcon />;
   return <InstagramIcon />;
 }
 
@@ -62,6 +64,39 @@ function SpotifyIcon() {
         strokeWidth="1.5"
         strokeLinecap="round"
       />
+    </svg>
+  );
+}
+
+function AppleMusicIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <text
+        x="12"
+        y="18.5"
+        textAnchor="middle"
+        fill="currentColor"
+        fontSize="18"
+        fontFamily="Georgia, 'Palatino Linotype', Palatino, serif"
+      >
+        ♫
+      </text>
+    </svg>
+  );
+}
+
+function YouTubeMusicIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle
+        cx="12"
+        cy="12"
+        r="8.25"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      />
+      <path d="M10.15 8.85v6.3l5.45-3.15-5.45-3.15z" fill="currentColor" />
     </svg>
   );
 }

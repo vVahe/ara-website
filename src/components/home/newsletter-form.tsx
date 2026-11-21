@@ -10,23 +10,33 @@ const ACTION =
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function NewsletterForm() {
-  const [emailError, setEmailError] = useState(false);
+  const [nameError, setNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [formError, setFormError] = useState(false);
   const [pending, setPending] = useState(false);
   const [done, setDone] = useState(false);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const data = new FormData(form);
     const name = String(data.get("fields[name]") ?? "").trim();
     const email = String(data.get("fields[email]") ?? "").trim();
-    if (!EMAIL.test(email)) {
-      setEmailError(true);
+    const nextNameError = name ? "" : copy.newsletterNameError;
+    const nextEmailError = !email
+      ? copy.newsletterEmailMissing
+      : EMAIL.test(email)
+        ? ""
+        : copy.newsletterEmailError;
+    setNameError(nextNameError);
+    setEmailError(nextEmailError);
+    if (nextNameError || nextEmailError) {
       setFormError(false);
+      const invalidId = nextNameError ? "newsletter-name" : "newsletter-email";
+      form.querySelector<HTMLElement>(`#${invalidId}`)?.focus();
       return;
     }
 
-    setEmailError(false);
     setFormError(false);
     setPending(true);
     try {
@@ -50,7 +60,7 @@ export function NewsletterForm() {
         return;
       }
       if (payload.errors?.fields?.email?.length) {
-        setEmailError(true);
+        setEmailError(copy.newsletterEmailError);
         return;
       }
       setFormError(true);
@@ -67,24 +77,45 @@ export function NewsletterForm() {
 
   return (
     <form className={styles.form} onSubmit={onSubmit} noValidate>
-      <div className={styles.field}>
+      <div className={`${styles.field} ${nameError ? styles.invalid : ""}`}>
         <label htmlFor="newsletter-name">{copy.newsletterName}</label>
-        <input id="newsletter-name" type="text" name="fields[name]" autoComplete="given-name" />
+        <input
+          id="newsletter-name"
+          aria-required="true"
+          aria-invalid={Boolean(nameError)}
+          aria-describedby={nameError ? "newsletter-name-error" : undefined}
+          type="text"
+          name="fields[name]"
+          autoComplete="given-name"
+          onChange={(event) => {
+            if (nameError && event.target.value.trim()) setNameError("");
+          }}
+        />
+        {nameError ? (
+          <p id="newsletter-name-error" className={styles.fieldError} role="alert">
+            {nameError}
+          </p>
+        ) : null}
       </div>
       <div className={`${styles.field} ${emailError ? styles.invalid : ""}`}>
         <label htmlFor="newsletter-email">{copy.newsletterEmail}</label>
         <input
           id="newsletter-email"
           aria-required="true"
-          aria-invalid={emailError}
-          aria-describedby="newsletter-email-error"
+          aria-invalid={Boolean(emailError)}
+          aria-describedby={emailError ? "newsletter-email-error" : undefined}
           type="email"
           name="fields[email]"
           autoComplete="email"
+          onChange={(event) => {
+            if (emailError && EMAIL.test(event.target.value.trim())) setEmailError("");
+          }}
         />
-        <p id="newsletter-email-error" className={styles.fieldError} role="alert">
-          {copy.newsletterEmailError}
-        </p>
+        {emailError ? (
+          <p id="newsletter-email-error" className={styles.fieldError} role="alert">
+            {emailError}
+          </p>
+        ) : null}
       </div>
       <div className={styles.submit}>
         <button type="submit" className={styles.join} disabled={pending}>

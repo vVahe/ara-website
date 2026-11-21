@@ -3,7 +3,7 @@ import { Footer } from "@/components/layout/footer";
 import { Nav } from "@/components/layout/nav";
 import { Header } from "@/components/home/header";
 import { ListSignup } from "@/components/home/list-signup";
-import { Release } from "@/components/home/release";
+import { Watch } from "@/components/home/watch";
 import { Shows } from "@/components/home/shows";
 import { amsterdamToday, amsterdamYear } from "@/lib/dates";
 
@@ -17,7 +17,7 @@ export default async function HomePage() {
       <Nav />
       <main>
         <Header />
-        <Release />
+        <Watch />
         <Shows today={today} />
         <ListSignup />
       </main>

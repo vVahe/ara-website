@@ -44,7 +44,7 @@
   justify-self: start;
   color: var(--paper);
   font-family: var(--font-display), serif;
-  font-size: 1.35rem;
+  font-size: 1.6rem;
   font-weight: 500;
   letter-spacing: 0.14em;
   text-decoration: none;
@@ -63,9 +63,12 @@
   display: inline-flex;
   align-items: center;
   color: var(--paper);
+  font-family: var(--font-display), serif;
   font-size: 0.92rem;
+  font-weight: 500;
   letter-spacing: 0.04em;
   text-decoration: none;
+  font-variation-settings: "opsz" 72;
 }
 
 .links a:hover,
@@ -91,8 +94,8 @@
 }
 
 .social svg {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
 }
 
 .social:hover,

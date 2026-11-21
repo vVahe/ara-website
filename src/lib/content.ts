@@ -27,6 +27,15 @@ export type Show = {
 export type Video = {
   title: string;
   youtubeId: string;
+  featured?: boolean;
+};
+
+export type ProductEdition = {
+  title: string;
+  intro: string;
+  body: string;
+  groups: { label: string; items: string[] }[];
+  details: string[];
 };
 
 export type Product = {
@@ -40,6 +49,8 @@ export type Product = {
   sizes: string[];
   stock: number;
   shippingClass: ShippingClass;
+  hidden?: boolean;
+  edition?: ProductEdition;
 };
 
 export const release = releaseJson as Release;

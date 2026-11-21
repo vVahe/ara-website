@@ -1,0 +1,18 @@
+.shell {
+  min-height: 100dvh;
+  padding-bottom: 13rem;
+}
+
+.footerDock {
+  position: fixed;
+  z-index: 20;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+@media (min-width: 800px) {
+  .shell {
+    padding-bottom: 9rem;
+  }
+}

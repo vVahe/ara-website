@@ -3,13 +3,34 @@
     "id": "cd-ep",
     "title": "Where the Lilies Bloom in Ruins",
     "kind": "cd",
-    "priceCents": 1200,
+    "priceCents": 1500,
     "currency": "EUR",
     "image": "/media/release-cover.webp",
     "description": "",
     "sizes": [],
     "stock": 40,
-    "shippingClass": "letterbox"
+    "shippingClass": "letterbox",
+    "edition": {
+      "title": "Where the Lilies Bloom in Ruins (Extended Edition)",
+      "intro": "The debut EP by Armenian-Dutch singer-songwriter ARA.",
+      "body": "This extended physical edition brings together the original four tracks alongside three bonus recordings, including Her Song, Sept 4th, and a live performance of Ruins recorded at the Schouwburg.",
+      "groups": [
+        {
+          "label": "Tracklist",
+          "items": ["Hin Orer (Old Days)", "Ruins", "Wings of Stone", "Meadows"]
+        },
+        {
+          "label": "Bonus Tracks",
+          "items": ["Her Song", "Sept 4th", "Ruins (Live at the Schouwburg)"]
+        }
+      ],
+      "details": [
+        "Extended edition — 7 tracks",
+        "Physical CD in a printed cardboard sleeve",
+        "Independently released by ARA",
+        "Limited physical run"
+      ]
+    }
   },
   {
     "id": "vinyl-ep",
@@ -21,6 +42,7 @@
     "description": "",
     "sizes": [],
     "stock": 20,
-    "shippingClass": "letterbox"
+    "shippingClass": "letterbox",
+    "hidden": true
   }
 ]

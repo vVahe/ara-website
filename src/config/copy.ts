@@ -1,6 +1,5 @@
 export const copy = {
   shopTitle: "Shop",
-  vatNote: "Prices include BTW where applicable.",
   fewLeft: "Few left",
   bag: "Cart",
   bagEmpty: "Nothing in the cart yet.",
@@ -42,8 +41,6 @@ export const copy = {
     { value: "AM", label: "Armenia" },
     { value: "Other", label: "Other" },
   ],
-  withdrawal:
-    "Physical goods. Inside the EU you can withdraw within 14 days. You pay return postage unless the item is wrong or damaged.",
   thankYou:
     "Payment received if your bank confirmed it. A mail follows when the parcel is handed to PostNL.",
   reference: "Reference",
@@ -52,6 +49,8 @@ export const copy = {
   newsletterLead: "Shows and songs, nothing else. You can leave any time.",
   newsletterName: "Name",
   newsletterEmail: "Email",
+  newsletterNameError: "Enter your name.",
+  newsletterEmailMissing: "Enter your email.",
   newsletterEmailError: "Enter a valid email.",
   newsletterJoin: "Join",
   newsletterLoading: "Loading…",

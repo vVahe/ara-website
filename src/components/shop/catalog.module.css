@@ -5,7 +5,7 @@
 .list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.75rem 1rem;
+  gap: 4rem 2.875rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -14,15 +14,40 @@
 .card {
   display: grid;
   align-content: start;
+  justify-items: center;
   gap: 0.55rem;
+  text-align: center;
+}
+
+.media {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
 }
 
 .thumb,
 .visual {
   position: relative;
-  aspect-ratio: 1;
+  display: block;
+  width: 100%;
   overflow: hidden;
   background: var(--bg-raised);
+}
+
+.thumb {
+  aspect-ratio: 1;
+}
+
+.cover {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
 }
 
 .thumb img,
@@ -50,7 +75,32 @@
 }
 
 .title {
+  width: 100%;
   font-size: 1.15rem;
+}
+
+.name {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-align: center;
+  cursor: pointer;
+}
+
+.media:focus-visible,
+.name:focus-visible {
+  outline: 3px solid var(--accent-2);
+  outline-offset: 3px;
+}
+
+.name:hover,
+.name:focus-visible {
+  color: var(--sand);
 }
 
 .price,
@@ -64,7 +114,6 @@
   color: var(--accent-2);
 }
 
-.view,
 .add,
 .size select,
 .qty select,
@@ -75,18 +124,39 @@
 }
 
 .view {
-  justify-self: start;
-  min-width: 8.5rem;
-  margin-top: 0.2rem;
-  padding: 0 0.95rem;
-  border: 1px solid var(--line);
+  justify-self: center;
+  min-width: 11.5rem;
+  min-height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.35rem;
+  padding: 0.75rem 1.6rem;
+  border: 1px solid var(--sand);
+  border-radius: 0;
   background: transparent;
-  color: var(--paper);
+  color: var(--sand);
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
   cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease;
 }
 
-.view:hover {
-  border-color: var(--paper);
+.view:hover,
+.view:focus-visible {
+  background: var(--sand);
+  color: var(--ink);
+}
+
+.view:focus-visible {
+  outline: 3px solid var(--accent-2);
+  outline-offset: 3px;
 }
 
 .backdrop {
@@ -102,8 +172,8 @@
 .modal {
   position: relative;
   display: grid;
-  width: min(52rem, 100%);
-  max-height: min(40rem, calc(100vh - 2.5rem));
+  width: min(72rem, 100%);
+  max-height: min(48rem, calc(100vh - 2.5rem));
   overflow: auto;
   border: 1px solid var(--line);
   background: var(--bg-raised);
@@ -148,6 +218,84 @@
   line-height: 1.5;
 }
 
+.edition {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 0.35rem;
+  padding-top: 1.05rem;
+  border-top: 1px solid var(--line);
+}
+
+.editionIntro,
+.editionBody {
+  margin: 0;
+  line-height: 1.55;
+}
+
+.editionIntro {
+  color: var(--paper);
+}
+
+.editionBody {
+  color: var(--muted);
+}
+
+.groupLabel {
+  margin: 0.2rem 0 0.4rem;
+  color: var(--sand);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.tracks,
+.facts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tracks li {
+  display: grid;
+  grid-template-columns: 1.75rem minmax(0, 1fr);
+  gap: 0.45rem;
+  align-items: baseline;
+  padding: 0.38rem 0;
+  border-bottom: 1px solid var(--line);
+  line-height: 1.35;
+}
+
+.trackNo {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+
+.facts {
+  display: grid;
+  gap: 0.35rem;
+  color: var(--muted);
+}
+
+.facts li {
+  position: relative;
+  padding-left: 0.95rem;
+  line-height: 1.4;
+}
+
+.facts li::before {
+  content: "";
+  position: absolute;
+  top: 0.62em;
+  left: 0;
+  width: 0.45rem;
+  height: 1px;
+  background: var(--sand);
+}
+
 .size,
 .qty {
   display: grid;
@@ -180,30 +328,48 @@
 
 .add {
   flex: 1;
-  padding: 0 1rem;
-  border: 0;
-  background: var(--accent);
-  color: var(--paper);
+  min-height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.6rem;
+  border: 1px solid var(--sand);
+  border-radius: 0;
+  background: transparent;
+  color: var(--sand);
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
   cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease;
 }
 
-.add:hover {
-  background: #9c3626;
+.add:hover,
+.add:focus-visible {
+  background: var(--sand);
+  color: var(--ink);
+}
+
+.add:focus-visible {
+  outline: 3px solid var(--accent-2);
+  outline-offset: 3px;
 }
 
 .add:disabled,
+.add:disabled:hover,
 .qty select:disabled {
   background: transparent;
   color: var(--muted);
   cursor: default;
 }
 
-.add:disabled {
-  border: 1px solid var(--line);
+.add:disabled,
+.add:disabled:hover {
+  border-color: var(--line);
 }
 
-.view:focus-visible,
-.add:focus-visible,
 .close:focus-visible,
 .size select:focus-visible,
 .qty select:focus-visible {
@@ -216,20 +382,45 @@
   color: var(--accent-2);
 }
 
+@media (max-width: 720px) {
+  .view {
+    width: 100%;
+    min-width: 0;
+    padding-right: 0.4rem;
+    padding-left: 0.4rem;
+    letter-spacing: 0.08em;
+  }
+}
+
 @media (min-width: 960px) {
   .list {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 2rem 1.15rem;
+    grid-template-columns: repeat(2, minmax(0, 20rem));
+    justify-content: start;
+    gap: 4.5rem 5.375rem;
   }
 }
 
 @media (min-width: 720px) {
   .modal {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    align-items: start;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    align-items: stretch;
+    height: min(48rem, calc(100vh - 2.5rem));
+    overflow: hidden;
+  }
+
+  .visual {
+    display: grid;
+    place-items: center;
+    height: 100%;
+  }
+
+  .cover {
+    width: min(30rem, calc(100% - 3.5rem));
   }
 
   .details {
-    padding: 3.4rem 1.4rem 1.6rem 1.35rem;
+    height: 100%;
+    overflow: auto;
+    padding: 3.4rem 1.75rem 1.6rem 1.35rem;
   }
 }

@@ -187,5 +187,46 @@
     "ticketUrl": "",
     "soldOut": false,
     "note": "Sessie"
+  },
+  {
+    "date": "2026-12-12",
+    "city": "Breda",
+    "venue": "PopMonument",
+    "country": "NL",
+    "ticketUrl": "https://popmonument.stager.co/shop/default/events/111666319",
+    "soldOut": false
+  },
+  {
+    "date": "2026-12-13",
+    "city": "Ede",
+    "venue": "Limelight Sessions, Cultura",
+    "country": "NL",
+    "ticketUrl": "https://cultura-ede.nl/agenda/limelight-sessions-258706/",
+    "soldOut": false
+  },
+  {
+    "date": "2027-01-03",
+    "city": "Breda",
+    "venue": "Luisterpunt, Brandpunt",
+    "country": "NL",
+    "ticketUrl": "",
+    "soldOut": false
+  },
+  {
+    "date": "2027-01-10",
+    "city": "Nijmegen",
+    "venue": "Podium 1390, Aldenhofzaal",
+    "country": "NL",
+    "ticketUrl": "https://podium1390.nl/concert-270110-ara/",
+    "soldOut": false,
+    "note": "Band"
+  },
+  {
+    "date": "2027-03-18",
+    "city": "Tilburg",
+    "venue": "Schouwburg",
+    "country": "NL",
+    "ticketUrl": "https://www.schouwburgconcertzaaltilburg.nl/nl/agenda/ara-is-nothing-sacred-anymore?q-page=ara",
+    "soldOut": false
   }
 ]

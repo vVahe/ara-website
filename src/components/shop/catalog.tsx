@@ -14,7 +14,7 @@ import {
   writeCart,
   type CartLine,
 } from "@/lib/cart";
-import type { Product } from "@/lib/content";
+import type { Product, ProductEdition } from "@/lib/content";
 import { lineLabel } from "@/lib/lines";
 import { formatEuros } from "@/lib/money";
 import { Bag } from "./bag";
@@ -90,21 +90,35 @@ export function Catalog({ products }: { products: Product[] }) {
             </p>
           ) : null}
           <ul className={styles.list}>
-            {products.map((product) => (
-              <li key={product.id}>
-                <article className={styles.card}>
-                  <div className={styles.thumb}>
-                    <Image src={product.image} alt="" fill sizes="(min-width: 960px) 25vw, 50vw" />
-                  </div>
-                  <h2 className={styles.title}>{lineLabel({ ...product, size: "" })}</h2>
-                  <p className={styles.price}>{formatEuros(product.priceCents)}</p>
-                  {product.stock <= 3 ? <p className={styles.few}>{copy.fewLeft}</p> : null}
-                  <button type="button" className={styles.view} onClick={() => openProduct(product)}>
-                    {copy.viewProduct}
-                  </button>
-                </article>
-              </li>
-            ))}
+            {products.filter((product) => !product.hidden).map((product) => {
+              const label = lineLabel({ ...product, size: "" });
+              return (
+                <li key={product.id}>
+                  <article className={styles.card}>
+                    <button
+                      type="button"
+                      className={styles.media}
+                      aria-label={label}
+                      onClick={() => openProduct(product)}
+                    >
+                      <span className={styles.thumb}>
+                        <Image src={product.image} alt="" fill sizes="(min-width: 960px) 20rem, 50vw" />
+                      </span>
+                    </button>
+                    <h2 className={styles.title}>
+                      <button type="button" className={styles.name} onClick={() => openProduct(product)}>
+                        {label}
+                      </button>
+                    </h2>
+                    <p className={styles.price}>{formatEuros(product.priceCents)}</p>
+                    {product.stock <= 3 ? <p className={styles.few}>{copy.fewLeft}</p> : null}
+                    <button type="button" className={styles.view} onClick={() => openProduct(product)}>
+                      {copy.viewProduct}
+                    </button>
+                  </article>
+                </li>
+              );
+            })}
           </ul>
         </div>
         <Bag
@@ -130,6 +144,41 @@ export function Catalog({ products }: { products: Product[] }) {
           }}
         />
       ) : null}
+    </div>
+  );
+}
+
+function EditionNotes({ edition }: { edition: ProductEdition }) {
+  let number = 0;
+  return (
+    <div className={styles.edition}>
+      <p className={styles.editionIntro}>{edition.intro}</p>
+      <p className={styles.editionBody}>{edition.body}</p>
+      {edition.groups.map((group) => (
+        <section key={group.label}>
+          <h4 className={styles.groupLabel}>{group.label}</h4>
+          <ol className={styles.tracks}>
+            {group.items.map((item) => {
+              number += 1;
+              const label = String(number).padStart(2, "0");
+              return (
+                <li key={item}>
+                  <span className={styles.trackNo}>{label}</span>
+                  <span>{item}</span>
+                </li>
+              );
+            })}
+          </ol>
+        </section>
+      ))}
+      <section>
+        <h4 className={styles.groupLabel}>Details</h4>
+        <ul className={styles.facts}>
+          {edition.details.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </section>
     </div>
   );
 }
@@ -211,11 +260,13 @@ function ProductModal({
           ×
         </button>
         <div className={styles.visual}>
-          <Image src={product.image} alt="" fill sizes="(min-width: 720px) 28rem, 100vw" />
+          <span className={styles.cover}>
+            <Image src={product.image} alt="" fill sizes="(min-width: 720px) 30rem, 100vw" />
+          </span>
         </div>
         <div className={styles.details}>
           <h2 id="product-title" className={styles.modalTitle}>
-            {lineLabel({ ...product, size: "" })}
+            {product.edition?.title ?? lineLabel({ ...product, size: "" })}
           </h2>
           <p className={styles.modalPrice}>{formatEuros(product.priceCents)}</p>
           {product.stock <= 3 ? <p className={styles.few}>{copy.fewLeft}</p> : null}
@@ -274,7 +325,11 @@ function ProductModal({
               {note}
             </p>
           ) : null}
-          {description ? <p className={styles.description}>{description}</p> : null}
+          {product.edition ? (
+            <EditionNotes edition={product.edition} />
+          ) : description ? (
+            <p className={styles.description}>{description}</p>
+          ) : null}
         </div>
       </div>
     </div>

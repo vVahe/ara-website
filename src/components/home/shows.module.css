@@ -11,8 +11,10 @@
 .label {
   margin: 0 0 1.5rem;
   color: var(--muted);
-  font-size: 0.75rem;
-  letter-spacing: 0.16em;
+  font-size: clamp(1.45rem, 2.8vw, 2rem);
+  letter-spacing: 0.14em;
+  line-height: 1.1;
+  text-align: center;
   text-transform: uppercase;
 }
 
@@ -24,7 +26,9 @@
 
 .row {
   display: grid;
-  gap: 0.2rem 1.5rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.2rem 1rem;
+  align-items: center;
   padding: 0.9rem 0;
   border-top: 1px solid var(--line);
 }
@@ -34,6 +38,7 @@
 }
 
 .date {
+  grid-column: 1 / -1;
   margin: 0;
   color: var(--paper);
 }
@@ -64,8 +69,39 @@
   color: inherit;
 }
 
+.ticket {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.25rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--sand);
+  background: transparent;
+  color: var(--sand);
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.ticket:hover,
+.ticket:focus-visible {
+  background: var(--sand);
+  color: var(--ink);
+}
+
+.ticket:focus-visible {
+  outline: 3px solid var(--accent-2);
+  outline-offset: 3px;
+}
+
 .footage {
-  margin-top: 2.5rem;
+  margin-top: 4.5rem;
   display: grid;
   gap: 1.5rem;
   scroll-margin-top: calc(var(--nav-height) + 1.5rem);
@@ -88,7 +124,11 @@
 
 @media (min-width: 700px) {
   .row {
-    grid-template-columns: 9rem minmax(0, 1fr);
-    align-items: baseline;
+    grid-template-columns: 9rem minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .date {
+    grid-column: auto;
   }
 }
