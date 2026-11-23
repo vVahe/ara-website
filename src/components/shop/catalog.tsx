@@ -15,7 +15,7 @@ import {
   type CartLine,
 } from "@/lib/cart";
 import type { Product, ProductEdition } from "@/lib/content";
-import { lineLabel } from "@/lib/lines";
+import { lineLabel, maxLineQuantity } from "@/lib/lines";
 import { formatEuros } from "@/lib/money";
 import { Bag } from "./bag";
 import styles from "./catalog.module.css";
@@ -36,6 +36,10 @@ function resolveLines(lines: CartLine[], products: Product[]) {
 
 function cartLines(lines: ResolvedLine[]): CartLine[] {
   return lines.map(({ productId, size, quantity }) => ({ productId, size, quantity }));
+}
+
+function productName(product: Product) {
+  return product.edition?.title ?? lineLabel({ ...product, size: "" });
 }
 
 export function Catalog({ products }: { products: Product[] }) {
@@ -91,7 +95,7 @@ export function Catalog({ products }: { products: Product[] }) {
           ) : null}
           <ul className={styles.list}>
             {products.filter((product) => !product.hidden).map((product) => {
-              const label = lineLabel({ ...product, size: "" });
+              const label = productName(product);
               return (
                 <li key={product.id}>
                   <article className={styles.card}>
@@ -201,7 +205,7 @@ function ProductModal({
   const [quantity, setQuantity] = useState(1);
   const [note, setNote] = useState("");
   const inCart = lines.find((line) => line.productId === product.id && line.size === size)?.quantity ?? 0;
-  const room = Math.max(0, 3 - inCart);
+  const room = Math.max(0, maxLineQuantity - inCart);
   const description = placeholderBlurbs.has(product.description) ? "" : product.description;
 
   useEffect(() => {
@@ -266,7 +270,7 @@ function ProductModal({
         </div>
         <div className={styles.details}>
           <h2 id="product-title" className={styles.modalTitle}>
-            {product.edition?.title ?? lineLabel({ ...product, size: "" })}
+            {productName(product)}
           </h2>
           <p className={styles.modalPrice}>{formatEuros(product.priceCents)}</p>
           {product.stock <= 3 ? <p className={styles.few}>{copy.fewLeft}</p> : null}

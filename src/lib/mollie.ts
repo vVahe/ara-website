@@ -4,6 +4,7 @@ import {
   encodeLines,
   goodsCents,
   lineLabel,
+  maxLineQuantity,
   orderQuantity,
   sheetTitle,
   type OrderLine,
@@ -238,7 +239,7 @@ export async function readPaidOrder(paymentId: string): Promise<PaidOrder | "ign
 
   const quantity = Number(metaString(payment.metadata, "quantity"));
   const title = metaString(payment.metadata, "title");
-  if (!title || !Number.isInteger(quantity) || quantity < 1 || quantity > 3) {
+  if (!title || !Number.isInteger(quantity) || quantity < 1 || quantity > maxLineQuantity) {
     console.error("paid mollie payment missing order metadata", payment.id);
     return "retry";
   }

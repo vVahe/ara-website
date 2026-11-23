@@ -1,3 +1,5 @@
+import { maxLineQuantity } from "@/lib/lines";
+
 export type CartLine = {
   productId: string;
   size: string;
@@ -9,7 +11,7 @@ export const emptyCart: CartLine[] = [];
 const storageKey = "ara-cart";
 const changeEvent = "ara-cart-change";
 const maxLines = 6;
-const maxQty = 3;
+const maxQty = maxLineQuantity;
 const idPattern = /^[a-z0-9-]{1,40}$/;
 
 let cacheRaw: string | null = null;

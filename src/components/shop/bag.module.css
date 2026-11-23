@@ -175,6 +175,8 @@
 .field select,
 .fieldInvalid input,
 .fieldInvalid select {
+  width: 100%;
+  min-width: 0;
   min-height: 44px;
   padding: 0 0.75rem;
   border: 1px solid var(--line);
@@ -208,6 +210,7 @@
 .field,
 .fieldInvalid {
   display: grid;
+  min-width: 0;
   gap: 0.35rem;
 }
 
@@ -235,26 +238,91 @@
 
 .totals {
   display: grid;
-  gap: 0.2rem;
-  margin: 0.2rem 0 0;
+  gap: 0.45rem;
+  margin: 0.35rem 0 0;
+  padding-top: 0.95rem;
+  border-top: 1px solid var(--line);
+}
+
+.totals div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.totals dt,
+.totals dd {
+  margin: 0;
+}
+
+.totals dt {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.totals dd {
+  color: var(--paper);
+  font-variant-numeric: tabular-nums;
+}
+
+.total {
+  margin-top: 0.2rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--line);
+}
+
+.total dt {
+  color: var(--sand);
+}
+
+.total dd {
+  font-family: var(--font-display), serif;
+  font-size: 1.45rem;
+  font-weight: 460;
+  font-variation-settings: "opsz" 72;
+  letter-spacing: -0.03em;
+  line-height: 1;
 }
 
 .pay {
-  justify-self: start;
-  min-height: 44px;
-  padding: 0 1.15rem;
-  border: 0;
-  background: var(--accent);
-  color: var(--paper);
-  font: inherit;
+  width: 100%;
+  min-height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.6rem;
+  border: 1px solid var(--sand);
+  border-radius: 0;
+  background: transparent;
+  color: var(--sand);
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
   cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease;
 }
 
-.pay:hover {
-  background: #9c3626;
+.pay:hover,
+.pay:focus-visible {
+  background: var(--sand);
+  color: var(--ink);
 }
 
-.pay:disabled {
+.pay:focus-visible {
+  outline: 3px solid var(--accent-2);
+  outline-offset: 3px;
+}
+
+.pay:disabled,
+.pay:disabled:hover {
+  background: transparent;
+  color: var(--sand);
   cursor: wait;
   opacity: 0.7;
 }
@@ -272,7 +340,7 @@
 
 @media (min-width: 640px) {
   .split {
-    grid-template-columns: 8.5rem 1fr;
+    grid-template-columns: minmax(0, 9.5rem) minmax(0, 1fr);
   }
 }
 

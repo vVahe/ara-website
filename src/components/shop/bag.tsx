@@ -6,7 +6,7 @@ import { shippingCents, type ShipCountry } from "@/config/shipping";
 import { addressErrors, addressFields, type AddressDraft, type AddressErrors, type AddressField } from "@/lib/address";
 import type { CartLine } from "@/lib/cart";
 import type { Product } from "@/lib/content";
-import { formatKind, shipmentClass } from "@/lib/lines";
+import { formatKind, maxLineQuantity, shipmentClass } from "@/lib/lines";
 import { formatEuros } from "@/lib/money";
 import styles from "./bag.module.css";
 
@@ -106,7 +106,7 @@ export function Bag({
                       value={line.quantity}
                       onChange={(event) => onQuantity(line.productId, line.size, Number(event.target.value))}
                     >
-                      {[1, 2, 3].map((value) => (
+                      {Array.from({ length: maxLineQuantity }, (_, index) => index + 1).map((value) => (
                         <option key={value} value={value}>
                           {value}
                         </option>
@@ -261,17 +261,20 @@ function Checkout({ lines }: { lines: ResolvedLine[] }) {
         </select>
       </label>
 
-      <p className={styles.totals}>
-        <span>
-          {copy.items} {formatEuros(goods)}
-        </span>
-        <span>
-          {copy.shipping} {formatEuros(postage)}
-        </span>
-        <span>
-          {copy.total} {formatEuros(total)}
-        </span>
-      </p>
+      <dl className={styles.totals}>
+        <div>
+          <dt>{copy.items}</dt>
+          <dd>{formatEuros(goods)}</dd>
+        </div>
+        <div>
+          <dt>{copy.shipping}</dt>
+          <dd>{formatEuros(postage)}</dd>
+        </div>
+        <div className={styles.total}>
+          <dt>{copy.total}</dt>
+          <dd>{formatEuros(total)}</dd>
+        </div>
+      </dl>
       <button className={styles.pay} type="submit" disabled={pending}>
         {pending ? copy.paying : copy.pay}
       </button>

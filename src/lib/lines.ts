@@ -20,6 +20,8 @@ export function formatKind(kind: string) {
   return kind.slice(0, 1).toUpperCase() + kind.slice(1);
 }
 
+export const maxLineQuantity = 10;
+
 export function lineLabel(line: { title: string; kind: string; size: string }) {
   const kind = formatKind(line.kind);
   if (!kind) return line.size ? `${line.title} / ${line.size}` : line.title;
@@ -72,7 +74,7 @@ export function decodeLines(value: string): OrderLine[] | null {
     const quantity = Number(qty);
     const unitCents = Number(cents);
     if (!/^[a-z0-9-]{1,40}$/.test(productId)) return null;
-    if (!Number.isInteger(quantity) || quantity < 1 || quantity > 3) return null;
+    if (!Number.isInteger(quantity) || quantity < 1 || quantity > maxLineQuantity) return null;
     if (!Number.isInteger(unitCents) || unitCents < 0) return null;
     if (size.length > 16 || /[|;%]/.test(size) || /[|;%]/.test(kind)) return null;
     let title = "";

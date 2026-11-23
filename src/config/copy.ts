@@ -35,12 +35,7 @@ export const copy = {
   pay: "Pay",
   paying: "Opening checkout…",
   checkoutError: "Checkout could not start. Try again.",
-  countries: [
-    { value: "NL", label: "Netherlands" },
-    { value: "BE", label: "Belgium" },
-    { value: "AM", label: "Armenia" },
-    { value: "Other", label: "Other" },
-  ],
+  countries: [{ value: "NL", label: "Netherlands" }],
   thankYou:
     "Payment received if your bank confirmed it. A mail follows when the parcel is handed to PostNL.",
   reference: "Reference",

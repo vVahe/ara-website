@@ -3,7 +3,7 @@ import { copy } from "@/config/copy";
 import { isShipCountry, shippingCents, type ShipCountry, type ShippingClass } from "@/config/shipping";
 import { readAddress, type AddressErrors } from "@/lib/address";
 import { products, type Product } from "@/lib/content";
-import { encodeLines, shipmentClass, type OrderLine } from "@/lib/lines";
+import { encodeLines, maxLineQuantity, shipmentClass, type OrderLine } from "@/lib/lines";
 
 const maxLines = 6;
 
@@ -64,13 +64,13 @@ export function parseCheckout(body: unknown): CheckoutInput | CheckoutRejection 
     }
     if (/[|;%]/.test(size)) return { error: "Choose a size." };
 
-    if (!Number.isInteger(line.quantity) || (line.quantity as number) < 1 || (line.quantity as number) > 3) {
-      return { error: "Quantity must be 1, 2, or 3." };
+    if (!Number.isInteger(line.quantity) || (line.quantity as number) < 1 || (line.quantity as number) > maxLineQuantity) {
+      return { error: `Quantity must be 1 to ${maxLineQuantity}.` };
     }
 
     const key = `${product.id}\0${size}`;
     const quantity = (merged.get(key)?.quantity ?? 0) + (line.quantity as number);
-    if (quantity > 3) return { error: "Quantity must be 1, 2, or 3." };
+    if (quantity > maxLineQuantity) return { error: `Quantity must be 1 to ${maxLineQuantity}.` };
     merged.set(key, { product, size, quantity });
   }
 
