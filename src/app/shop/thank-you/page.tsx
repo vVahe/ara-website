@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ClearCart } from "@/components/shop/clear-cart";
 import { copy } from "@/config/copy";
+import { isOrderReference } from "@/lib/orders";
 import styles from "../page.module.css";
 
 export const metadata: Metadata = {
@@ -15,7 +16,7 @@ export default async function ThankYouPage({
   searchParams: Promise<{ order?: string }>;
 }) {
   const { order } = await searchParams;
-  const reference = order && /^ord_[A-Za-z0-9_-]{12}$/.test(order) ? order : null;
+  const reference = order && isOrderReference(order) ? order : null;
 
   return (
     <main className={styles.main}>

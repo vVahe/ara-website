@@ -6,7 +6,7 @@ import { shippingCents, type ShipCountry } from "@/config/shipping";
 import { addressErrors, addressFields, type AddressDraft, type AddressErrors, type AddressField } from "@/lib/address";
 import type { CartLine } from "@/lib/cart";
 import type { Product } from "@/lib/content";
-import { formatKind, maxLineQuantity, shipmentClass } from "@/lib/lines";
+import { maxLineQuantity, productName, shipmentClass } from "@/lib/lines";
 import { formatEuros } from "@/lib/money";
 import styles from "./bag.module.css";
 
@@ -95,8 +95,7 @@ export function Bag({
           <ul className={styles.lines}>
             {lines.map((line) => (
               <li key={`${line.productId}:${line.size}`}>
-                <p className={styles.kind}>{formatKind(line.product.kind)}</p>
-                <p className={styles.title}>{line.product.title}</p>
+                <p className={styles.title}>{productName(line.product)}</p>
                 {line.size ? <p className={styles.meta}>{line.size}</p> : null}
                 <p className={styles.meta}>{formatEuros(line.product.priceCents * line.quantity)}</p>
                 <div className={styles.controls}>

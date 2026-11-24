@@ -22,10 +22,18 @@ export function formatKind(kind: string) {
 
 export const maxLineQuantity = 10;
 
-export function lineLabel(line: { title: string; kind: string; size: string }) {
-  const kind = formatKind(line.kind);
-  if (!kind) return line.size ? `${line.title} / ${line.size}` : line.title;
-  return line.size ? `${line.title} (${kind}, ${line.size})` : `${line.title} (${kind})`;
+export function productName(product: {
+  title: string;
+  kind: string;
+  edition?: { title: string } | null;
+}) {
+  if (product.edition?.title) return product.edition.title;
+  const kind = formatKind(product.kind);
+  return kind ? `${product.title} (${kind})` : product.title;
+}
+
+export function lineLabel(line: { title: string; size: string }) {
+  return line.size ? `${line.title} (${line.size})` : line.title;
 }
 
 export function goodsCents(lines: OrderLine[]) {

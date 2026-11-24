@@ -17,6 +17,8 @@
 .reference {
   margin: 0 0 1.5rem;
   color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
 }
 
 .main a {

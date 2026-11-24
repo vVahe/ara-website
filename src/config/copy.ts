@@ -37,7 +37,7 @@ export const copy = {
   checkoutError: "Checkout could not start. Try again.",
   countries: [{ value: "NL", label: "Netherlands" }],
   thankYou:
-    "Payment received if your bank confirmed it. A mail follows when the parcel is handed to PostNL.",
+    "Payment received if your bank confirmed it. You should receive an order confirmation mail soon, followed by a separate mail containing the Track & Trace for the shipment.",
   reference: "Reference",
   cancelledLead: "The payment was not completed.",
   backToShop: "Back to the shop",

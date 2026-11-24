@@ -15,7 +15,7 @@ import {
   type CartLine,
 } from "@/lib/cart";
 import type { Product, ProductEdition } from "@/lib/content";
-import { lineLabel, maxLineQuantity } from "@/lib/lines";
+import { maxLineQuantity, productName } from "@/lib/lines";
 import { formatEuros } from "@/lib/money";
 import { Bag } from "./bag";
 import styles from "./catalog.module.css";
@@ -36,10 +36,6 @@ function resolveLines(lines: CartLine[], products: Product[]) {
 
 function cartLines(lines: ResolvedLine[]): CartLine[] {
   return lines.map(({ productId, size, quantity }) => ({ productId, size, quantity }));
-}
-
-function productName(product: Product) {
-  return product.edition?.title ?? lineLabel({ ...product, size: "" });
 }
 
 export function Catalog({ products }: { products: Product[] }) {

@@ -3,7 +3,7 @@ import { copy } from "@/config/copy";
 import { isShipCountry, shippingCents, type ShipCountry, type ShippingClass } from "@/config/shipping";
 import { readAddress, type AddressErrors } from "@/lib/address";
 import { products, type Product } from "@/lib/content";
-import { encodeLines, maxLineQuantity, shipmentClass, type OrderLine } from "@/lib/lines";
+import { encodeLines, maxLineQuantity, productName, shipmentClass, type OrderLine } from "@/lib/lines";
 
 const maxLines = 6;
 
@@ -25,8 +25,20 @@ export type CheckoutRejection = {
   fields?: AddressErrors;
 };
 
+const orderAlphabet = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+
 export function newOrderId() {
-  return `ord_${randomBytes(9).toString("base64url")}`;
+  const bytes = randomBytes(8);
+  let code = "";
+  for (const byte of bytes) code += orderAlphabet[byte % orderAlphabet.length];
+  return `ARA-${code.slice(0, 4)}-${code.slice(4)}`;
+}
+
+export function isOrderReference(value: string) {
+  return (
+    /^ARA-[ABCDEFGHJKMNPQRSTUVWXYZ23456789]{4}-[ABCDEFGHJKMNPQRSTUVWXYZ23456789]{4}$/.test(value) ||
+    /^ord_[A-Za-z0-9_-]{12}$/.test(value)
+  );
 }
 
 function lineSize(product: Product, value: unknown): string | null {
@@ -54,7 +66,8 @@ export function parseCheckout(body: unknown): CheckoutInput | CheckoutRejection 
     if (!product || product.currency !== "EUR" || !Number.isInteger(product.priceCents) || product.priceCents < 0) {
       return { error: "An item in the cart is no longer for sale." };
     }
-    if (/[|;%]/.test(product.id) || /[|;%]/.test(product.kind) || product.title.length > 160) {
+    const title = productName(product);
+    if (/[|;%]/.test(product.id) || /[|;%]/.test(product.kind) || /[|;%]/.test(title) || title.length > 160) {
       return { error: "Check the cart and try again." };
     }
 
@@ -79,7 +92,7 @@ export function parseCheckout(body: unknown): CheckoutInput | CheckoutRejection 
   const picked = [...merged.values()];
   const lines: OrderLine[] = picked.map(({ product, size, quantity }) => ({
     productId: product.id,
-    title: product.title,
+    title: productName(product),
     kind: product.kind,
     size,
     quantity,
