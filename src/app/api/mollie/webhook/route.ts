@@ -1,4 +1,4 @@
-import { sendMerchantEmail } from "@/lib/email";
+import { sendBuyerEmail, sendMerchantEmail } from "@/lib/email";
 import { readPaidOrder } from "@/lib/mollie";
 import { appendOrder } from "@/lib/sheet";
 
@@ -25,6 +25,15 @@ export async function POST(request: Request) {
       } catch (error) {
         console.error(
           "merchant email failed",
+          order.orderId,
+          error instanceof Error ? error.message : "error",
+        );
+      }
+      try {
+        await sendBuyerEmail(order);
+      } catch (error) {
+        console.error(
+          "buyer email failed",
           order.orderId,
           error instanceof Error ? error.message : "error",
         );

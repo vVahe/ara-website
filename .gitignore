@@ -39,6 +39,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
+# local email preview
+preview/
+
 # misc
 .DS_Store
 *.pem
