@@ -193,7 +193,7 @@ function trackingText_(order, trackUrl) {
     "",
     "Track it: " + trackUrl,
     "",
-    "If the link does not open, the barcode is " + order.code + ".",
+    "If the link does not open, the track & trace code is: " + order.code + ".",
     "",
     "Order " + order.orderId,
   ].join("\n");
@@ -213,7 +213,7 @@ function trackingHtml_(order, trackUrl) {
     '<tr><td style="padding-top:28px;font-family:' + serif_ + ';font-size:26px;line-height:1.25;color:#16140f;">On its way, ' + who + '.</td></tr>' +
     '<tr><td style="padding-top:12px;font-family:' + sans_ + ';font-size:15px;line-height:1.5;color:#5c564e;">' + label + " is with PostNL.</td></tr>" +
     '<tr><td style="padding-top:28px;"><a href="' + href + '" style="display:inline-block;background:#16140f;color:#f4efe6;font-family:' + sans_ + ';font-size:15px;line-height:1;text-decoration:none;padding:14px 18px;">Track the parcel</a></td></tr>' +
-    '<tr><td style="padding-top:16px;font-family:' + sans_ + ';font-size:13px;line-height:1.5;color:#8a8378;">If the button does not open, the barcode is ' + code + ".</td></tr>" +
+    '<tr><td style="padding-top:16px;font-family:' + sans_ + ';font-size:13px;line-height:1.5;color:#8a8378;">If the button does not open, the track &amp; trace code is: ' + code + ".</td></tr>" +
     '<tr><td style="padding-top:32px;font-family:' + sans_ + ';font-size:13px;color:#8a8378;">Order ' + orderId + "</td></tr>" +
     "</table></td></tr></table></body></html>"
   );
